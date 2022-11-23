@@ -5,4 +5,4 @@ import matrixalg
 # Create your views here.
 def index(request):
     n = request.GET.get('size')
-    return HttpResponse(matrixalg.main(n), content_type='text/plain; charset=utf-8')
+    return HttpResponse(matrixalg.main(n), content_type='application/json')
