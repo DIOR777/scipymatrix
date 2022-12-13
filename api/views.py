@@ -6,6 +6,7 @@ from .serializers import ArrayDiagonaleSerializers
 import matrixalg
 from drf_spectacular.utils import extend_schema, OpenApiParameter, OpenApiExample, OpenApiResponse
 from drf_spectacular.types import OpenApiTypes
+import numbers
 
 # Create your views here.
 class ArrayDiagonaleView(APIView):
@@ -33,6 +34,8 @@ class ArrayDiagonaleView(APIView):
 
     def get(self, request):
         size = request.GET.get('size')
+        if size.isdigit() == False:
+            return Response('Size must be integer', status=400)
         a = matrixalg.main(size)
         result = ArrayDiagonale(a['массив'], a['диагональ'])
 
